@@ -1,5 +1,5 @@
 # rust-result.js
-This is meant to mimic Rust's `std::result`.
+Mimic Rust's `std::result`.
 
 ## Installation
 ```sh
