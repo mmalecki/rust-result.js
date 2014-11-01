@@ -15,7 +15,8 @@
     "cover": "istanbul cover --print detail --report html test.js",
     "view-cover": "istanbul report html && opn ./coverage/index.html"
   },
-
-
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "^3.0.1"
+  }
 }
