@@ -1,22 +1,22 @@
-var Individual = require('individual');
+var Individual = require('individual')
 
 var VERSION_KEY = '1';
-var ERROR_CACHE_KEY = '__RUST_RESULT_ERROR_UUID@' + VERSION_KEY;
-var OK_CACHE_KEY = '__RUST_RESULT_OK_UUID@' + VERSION_KEY;
+var ERROR_CACHE_KEY = '__RUST_RESULT_ERROR_UUID@' + VERSION_KEY
+var OK_CACHE_KEY = '__RUST_RESULT_OK_UUID@' + VERSION_KEY
 
-var ERROR_UUID = Individual(ERROR_CACHE_KEY, fakeUUID('Error'));
-var OK_UUID = Individual(OK_CACHE_KEY, fakeUUID('Ok'));
+var ERROR_UUID = Individual(ERROR_CACHE_KEY, fakeUUID('Error'))
+var OK_UUID = Individual(OK_CACHE_KEY, fakeUUID('Ok'))
 
 function Ok(v) {
   this.v = v
 
-  this[OK_UUID] = true;
+  this[OK_UUID] = true
 }
 
 function Err(err) {
   this.err = err
 
-  this[ERROR_UUID] = true;
+  this[ERROR_UUID] = true
 }
 
 function createOk(v) {
@@ -53,9 +53,9 @@ function fakeUUID(word) {
     Math.random().toString(32).slice(2) + ':' +
     Math.random().toString(32).slice(2) + ':' +
     Math.random().toString(32).slice(2) + ':' +
-    Math.random().toString(32).slice(2) + ':';
+    Math.random().toString(32).slice(2) + ':'
 }
 
 function isObject(o) {
-  return typeof o === 'object' && o !== null;
+  return typeof o === 'object' && o !== null
 }
