@@ -18,5 +18,8 @@
   "license": "MIT",
   "devDependencies": {
     "tape": "^3.0.1"
+  },
+  "dependencies": {
+    "individual": "^2.0.0"
   }
 }
