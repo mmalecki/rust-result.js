@@ -1,16 +1,13 @@
 function Result(result) {
-  if (!(this instanceof Result)) return new Result(result)
   this.result = result
 }
 
 function Ok(v) {
-  if (!(this instanceof Ok)) return new Ok(v)
   this.v = v
 }
 Ok.prototype = new Result()
 
 function Err(err) {
-  if (!(this instanceof Err)) return new Err(err)
   this.err = err
 }
 Err.prototype = new Result()
