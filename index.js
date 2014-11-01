@@ -67,5 +67,5 @@ function isObject(o) {
 function isError(e) {
   return isObject(e) &&
       (Object.prototype.toString.call(e) === '[object Error]' ||
-        e instanceof Error)
+        /* istanbul ignore next */ e instanceof Error)
 }
