@@ -18,7 +18,7 @@ Err.prototype = new Result()
 function createOk(v) {
   if (v instanceof Result) {
     if (v instanceof Ok) return v.v
-    return null
+    return undefined
   }
   return new Ok(v)
 }
@@ -26,7 +26,7 @@ function createOk(v) {
 function createError(err) {
   if (err instanceof Result) {
     if (err instanceof Err) return err.err
-    return null
+    return undefined
   }
   return new Err(err)
 }
