@@ -70,3 +70,12 @@ test('Ok can support null value', function t(assert) {
 
   assert.end();
 });
+
+test('Ok throws if you box undefined', function t(assert) {
+  assert.throws(function () {
+    Result.Ok(undefined)
+  }, /Cannot box `undefined` in Result.Ok/);
+
+  assert.end();
+
+})

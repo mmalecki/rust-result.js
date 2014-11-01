@@ -25,6 +25,10 @@ function createOk(v) {
   } else if (isObject(v) && ERROR_UUID in v) {
     return undefined
   } else {
+    if (v === undefined) {
+      throw Error('rust-result: Cannot box `undefined` in Result.Ok');
+    }
+
     return new Ok(v)
   }
 }
