@@ -47,8 +47,18 @@ function createErr(err) {
   }
 }
 
+function isOk(v) {
+  return createOk(v) !== undefined
+}
+
+function isErr(err) {
+  return createErr(err) !== undefined
+}
+
 module.exports = {
+  isOk: isOk,
   Ok: createOk,
+  isErr: isErr,
   Err: createErr
 }
 
