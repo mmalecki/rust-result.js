@@ -11,7 +11,9 @@
     "email": "raynos2@gmail"
   },
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "cover": "istanbul cover --print detail --report html test.js",
+    "view-cover": "istanbul report html && opn ./coverage/index.html"
   },
 
 
