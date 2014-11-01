@@ -15,7 +15,7 @@ function Err(err) {
 }
 Err.prototype = new Result()
 
-exports.Ok = function (v) {
+function createOk(v) {
   if (v instanceof Result) {
     if (v instanceof Ok) return v.v
     return null
@@ -23,7 +23,7 @@ exports.Ok = function (v) {
   return new Ok(v)
 }
 
-exports.Err = function (err) {
+function createError(err) {
   if (err instanceof Result) {
     if (err instanceof Err) return err.err
     return null
@@ -31,6 +31,12 @@ exports.Err = function (err) {
   return new Err(err)
 }
 
-exports.Result = function (result) {
+function createResult(result) {
   return new Result(result)
+}
+
+module.exports = {
+  Ok: createOk,
+  Err: createError,
+  Result: createResult
 }
