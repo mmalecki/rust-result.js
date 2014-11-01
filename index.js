@@ -33,7 +33,7 @@ function createOk(v) {
   }
 }
 
-function createError(err) {
+function createErr(err) {
   if (isObject(err) && ERROR_UUID in err) {
     return err.err
   } else if (isObject(err) && OK_UUID in err) {
@@ -49,7 +49,7 @@ function createError(err) {
 
 module.exports = {
   Ok: createOk,
-  Err: createError
+  Err: createErr
 }
 
 function fakeUUID(word) {
