@@ -26,7 +26,7 @@ function createOk(v) {
     return undefined
   } else {
     if (v === undefined) {
-      throw Error('rust-result: Cannot box `undefined` in Result.Ok');
+      throw Error('rust-result: Cannot box `undefined` in Result.Ok')
     }
 
     return new Ok(v)
