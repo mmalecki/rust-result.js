@@ -1,33 +1,35 @@
-var fs = require('fs')
-var Ok = require('./').Ok
-var Err = require('./').Err
-var Result = require('./').Result
+var fs = require('fs');
+var Result = require('./');
+
 
 // If you want async just get a promise or something.
 var readFile = function (path, encoding) {
-  var content;
   try {
-    return Ok(fs.readFileSync(path, encoding))
+    return Result.Ok(fs.readFileSync(path, encoding))
   }
   catch (ex) {
-    return Err(ex)
+    return Result.Err(ex)
   }
 }
 
-var result = readFile(__filename)
+var result = readFile(__filename);
 var v, err;
 
-if (v = Ok(result)) {
+if (Result.Ok(result) !== undefined) {
+  v = Result.Ok(result);
   console.log('got ' + v.length + ' bytes')
 }
-else if (err = Err(result)) {
+else if (Result.Err(result) !== undefined) {
+  err = Result.Err(result);
   console.error('oops!', err.message)
 }
 
 result = readFile(__filename + 'I do not exist')
-if (v = Ok(result)) {
+if (Result.Ok(result) !== undefined) {
+  v = Result.Ok(result)
   console.log('got ' + v.length + ' bytes')
 }
-else if (err = Err(result)) {
+else if (Result.Err(result) !== undefined) {
+  err = Result.Err(result)
   console.error('oops!', err.message)
 }
