@@ -15,21 +15,21 @@ var readFile = function (path, encoding) {
 var result = readFile(__filename);
 var v, err;
 
-if (Result.Ok(result) !== undefined) {
+if (Result.isOk(result)) {
   v = Result.Ok(result);
   console.log('got ' + v.length + ' bytes')
 }
-else if (Result.Err(result) !== undefined) {
+else if (Result.isErr(result)) {
   err = Result.Err(result);
   console.error('oops!', err.message)
 }
 
 result = readFile(__filename + 'I do not exist')
-if (Result.Ok(result) !== undefined) {
+if (Result.isOk(result)) {
   v = Result.Ok(result)
   console.log('got ' + v.length + ' bytes')
 }
-else if (Result.Err(result) !== undefined) {
+else if (Result.isErr(result)) {
   err = Result.Err(result)
   console.error('oops!', err.message)
 }

@@ -12,12 +12,11 @@ npm install rust-result
 
 ```js
 var fs = require('fs');
-var Result = require('rust-result');
+var Result = require('./');
 
 
 // If you want async just get a promise or something.
 var readFile = function (path, encoding) {
-  var content;
   try {
     return Result.Ok(fs.readFileSync(path, encoding))
   }
@@ -29,24 +28,25 @@ var readFile = function (path, encoding) {
 var result = readFile(__filename);
 var v, err;
 
-if (Result.Ok(result) !== undefined) {
+if (Result.isOk(result)) {
   v = Result.Ok(result);
   console.log('got ' + v.length + ' bytes')
 }
-else if (Result.Err(result) !== undefined) {
+else if (Result.isErr(result)) {
   err = Result.Err(result);
   console.error('oops!', err.message)
 }
 
 result = readFile(__filename + 'I do not exist')
-if (Result.Ok(result) !== undefined) {
+if (Result.isOk(result)) {
   v = Result.Ok(result)
   console.log('got ' + v.length + ' bytes')
 }
-else if (Result.Err(result) !== undefined) {
+else if (Result.isErr(result)) {
   err = Result.Err(result)
   console.error('oops!', err.message)
 }
+
 ```
 
 ## Documentation
@@ -62,10 +62,14 @@ type ErrResult<E <: Error> : {
 rust-result : {
   Ok: ((T) => OkResult<T>) |
     ((OkResult<T>) => T) |
-    ((ErrResult<E>) => void)
+    ((ErrResult<E>) => void),
+  isOk: ((OkResult<T>) => true) |
+    ((ErrResult<E>) => false)
   Err: ((E <: Error) => ErrResult<E>) |
     ((ErrResult<E>) => E) |
-    ((OkResult<T>) => void)
+    ((OkResult<T>) => void),
+  isErr: ((ErrResult<E>) => true) |
+    ((OkResult<T>) => false)
 }
 ```
 
@@ -82,6 +86,14 @@ If you call `Result.Ok` with either an `Err` or an `Ok` instance
   then it will return `undefined` for the `Err` and return the
   value boxed in the `Ok`
 
+### `Result.isOk`
+
+The `Result.isOk` function just checks whether the argument
+  is an instance of `Ok`.
+
+This predicate function returns true if you pass it an `Ok` and
+  returns false if you pass it an `Err`
+
 ### `Result.Err`
 
 The `Result.Err` function is overloaded to do one of two things.
@@ -94,6 +106,14 @@ If you call `Result.Err` with a plain error it will return an
 If you call `Result.Err` with either an `Err` or an `Ok` instance
   then it will return `undefined` for the `Ok` and return the
   value err in the `Err`
+
+### `Result.isErr`
+
+The `Result.isErr` function just checks whether the argument
+  is an instance of `Err`.
+
+This predicate function returns true if you pass it an `Err` and
+  returns false if you pass it an `Ok`
 
 ## MIT Licenced.
 
