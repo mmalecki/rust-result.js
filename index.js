@@ -39,6 +39,10 @@ function createError(err) {
   } else if (isObject(err) && OK_UUID in err) {
     return undefined
   } else {
+    if (!isError(err)) {
+      throw Error('rust-result: Cannot box a non-error in Result.Err')
+    }
+
     return new Err(err)
   }
 }
@@ -58,4 +62,10 @@ function fakeUUID(word) {
 
 function isObject(o) {
   return typeof o === 'object' && o !== null
+}
+
+function isError(e) {
+  return isObject(e) &&
+      (Object.prototype.toString.call(e) === '[object Error]' ||
+        e instanceof Error)
 }

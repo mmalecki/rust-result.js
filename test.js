@@ -77,5 +77,12 @@ test('Ok throws if you box undefined', function t(assert) {
   }, /Cannot box `undefined` in Result.Ok/);
 
   assert.end();
+})
 
+test('Err throws if you box non-error', function t(assert) {
+  assert.throws(function () {
+    Result.Err(42)
+  }, /Cannot box a non-error in Result.Err/);
+
+  assert.end();
 })
