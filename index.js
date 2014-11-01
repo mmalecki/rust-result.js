@@ -31,12 +31,7 @@ function createError(err) {
   return new Err(err)
 }
 
-function createResult(result) {
-  return new Result(result)
-}
-
 module.exports = {
   Ok: createOk,
-  Err: createError,
-  Result: createResult
+  Err: createError
 }
