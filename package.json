@@ -17,6 +17,8 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "istanbul": "^0.3.5",
+    "opn": "^1.0.0",
     "tape": "^3.0.1"
   },
   "dependencies": {
