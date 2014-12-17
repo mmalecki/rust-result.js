@@ -1,6 +1,6 @@
 {
   "name": "rust-result",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Maciej Małecki <me@mmalecki.com>",
   "description": "Mimic Rust's `std::result`",
   "main": "index",
